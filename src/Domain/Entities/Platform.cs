@@ -9,9 +9,12 @@ namespace Domain.Entities
         [Required]
         public string Name { get; set; }
 
-        public Platform(string name)
+        public string? Description { get; set; }
+
+        public Platform(string name, string? description = null)
         {
             Name = name;
+            Description = description;
         }
     }
 }
