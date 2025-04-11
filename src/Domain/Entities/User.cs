@@ -1,6 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Domain.Enums;
+using System.ComponentModel.DataAnnotations;
 
-namespace Domain
+namespace Domain.Entities
 {
     public class User
     {
@@ -23,12 +24,15 @@ namespace Domain
 
         public ICollection<Issue>? Issues { get; set; } = new List<Issue>();
 
-        public User(string userName, string email, string password, string? profilePhotoURL = null)
+        public UserType UserType { get; set; }
+
+        public User(string userName, string email, string password, UserType userType, string? profilePhotoURL = null)
         {
             UserName = userName;
             Email = email;
             Password = password;
             ProfilePhotoURL = profilePhotoURL;
+            UserType = userType;
         }
     }
 }
