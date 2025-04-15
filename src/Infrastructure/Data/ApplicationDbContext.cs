@@ -33,11 +33,36 @@ namespace Infrastructure.Data
         {
             Genre[] newGenres = [
 
-                new Genre("None", "Sin género"),
-                new Genre("RTS", "Real Time Strategy"),
-                new Genre("Sports"),
-                new Genre("Fighting"),
-                new Genre("Racing")
+                new Genre()
+                {
+                    Id = 1,
+                    Name = "None",
+                    Description = "Sin género"
+                },
+                new Genre()
+                {
+                    Id = 2,
+                    Name = "RTS",
+                    Description = "Real Time Strategy"
+                },
+                new Genre
+                {
+                    Id = 3,
+                    Name = "Sports",
+                    Description = null
+                },
+                new Genre
+                {
+                    Id = 4,
+                    Name = "Fighting",
+                    Description = null
+                },
+                new Genre
+                {
+                    Id = 5,
+                    Name = "Racing",
+                    Description = null
+                },
             ];
 
             return newGenres;
@@ -47,12 +72,42 @@ namespace Infrastructure.Data
         {
             Platform[] newPlatforms = [
 
-                new Platform("None", "Sin plataforma"),
-                new Platform("PC", "Personal Computer"),
-                new Platform("PS1", "Play Station 1"),
-                new Platform("PS2", "Play Station 2"),
-                new Platform("NES", "Nintendo Entertnaiment System"),
-                new Platform("SNES", "Super Nintendo Entertnaiment System")
+                new Platform
+                {
+                    Id = 1,
+                    Name= "None",
+                    Description = "Sin plataforma"
+                },
+                new Platform
+                {
+                    Id = 2,
+                    Name= "PC",
+                    Description = "Personal Computer"
+                },
+                new Platform
+                {
+                    Id = 3,
+                    Name= "PS1",
+                    Description = "Play Station 1"
+                },
+                new Platform
+                {
+                    Id = 4,
+                    Name= "PS2",
+                    Description = "Play Station 2"
+                },
+                new Platform
+                {
+                    Id = 5,
+                    Name= "NES",
+                    Description = "Nintendo Entertainment System"
+                },
+                new Platform
+                {
+                    Id = 6,
+                    Name= "SNES",
+                    Description = "Super Nintendo Entertainment System"
+                },
             ];
 
             return newPlatforms;
