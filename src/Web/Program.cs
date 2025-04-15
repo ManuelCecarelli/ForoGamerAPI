@@ -8,9 +8,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+#region SwaggerConfig
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen();
+
+#endregion
+
+#region DataBaseConfig
 
 // DB connection String
 string connectionString = builder.Configuration["ConnectionStrings:ForoGamerApiDbDefaultConnection"]!;
@@ -27,6 +34,20 @@ using (var command = connection.CreateCommand())
 }
 
 builder.Services.AddDbContext<ApplicationDbContext>(dbContextOptions => dbContextOptions.UseSqlite(connectionString));
+
+#endregion
+
+#region Services
+
+
+
+#endregion
+
+#region Repositories
+
+
+
+#endregion
 
 var app = builder.Build();
 
