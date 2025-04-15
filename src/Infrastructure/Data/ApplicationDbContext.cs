@@ -15,8 +15,6 @@ namespace Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //base.OnModelCreating(modelBuilder); //revisar
-
             modelBuilder.Entity<Genre>()
                 .Property(g => g.Id)
                 .ValueGeneratedOnAdd();
@@ -27,6 +25,8 @@ namespace Infrastructure.Data
 
             modelBuilder.Entity<Genre>().HasData(CreateGenreDataSeed());
             modelBuilder.Entity<Platform>().HasData(CreatePlatformDataSeed());
+
+            base.OnModelCreating(modelBuilder);
         }
 
         private Genre[] CreateGenreDataSeed()
