@@ -1,4 +1,5 @@
 using Infrastructure.Data;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,10 +12,21 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// DB configuration
+// DB connection String
 string connectionString = builder.Configuration["ConnectionStrings:ForoGamerApiDbDefaultConnection"]!;
 
-builder.Services.AddDbContext<ApplicationDbContext>(dbContextOptions => dbContextOptions.UseSqlServer(connectionString));
+// Configure the SQLite connection
+var connection = new SqliteConnection(connectionString);
+connection.Open();
+
+// Set journal mode to DELETE using PRAGMA statement
+using (var command = connection.CreateCommand())
+{
+    command.CommandText = "PRAGMA journal_mode = DELETE;";
+    command.ExecuteNonQuery();
+}
+
+builder.Services.AddDbContext<ApplicationDbContext>(dbContextOptions => dbContextOptions.UseSqlite(connectionString));
 
 var app = builder.Build();
 
