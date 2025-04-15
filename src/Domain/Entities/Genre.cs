@@ -11,6 +11,10 @@ namespace Domain.Entities
 
         public string? Description { get; set; }
 
+        public Genre()
+        {
+        }
+
         public Genre(string name, string? description = null)
         {
             Name = name;

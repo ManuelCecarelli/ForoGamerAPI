@@ -11,6 +11,10 @@ namespace Domain.Entities
 
         public string? Description { get; set; }
 
+        public Platform()
+        {
+        }
+
         public Platform(string name, string? description = null)
         {
             Name = name;
