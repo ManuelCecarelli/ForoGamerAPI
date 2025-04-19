@@ -1,3 +1,4 @@
+using Domain.Interfaces;
 using Infrastructure.Data;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
@@ -45,7 +46,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(dbContextOptions => dbContex
 
 #region Repositories
 
-
+builder.Services.AddScoped<IGenreRepository, GenreRepository>();
 
 #endregion
 
