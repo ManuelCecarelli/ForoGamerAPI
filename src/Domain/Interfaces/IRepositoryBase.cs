@@ -9,7 +9,7 @@
         // A task that represents the asynchronous operation.
         // The task result contains a <see cref="List{T}" /> that contains elements from the input sequence.
         // </returns>
-        Task<List<T>> GetAllAsync(CancellationToken cancellationToken = default);
+        Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default);
 
         // <summary>
         // Finds an entity with the given primary key value.

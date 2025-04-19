@@ -12,7 +12,7 @@ namespace Infrastructure.Data
             _dbContext = dbContext;
         }
 
-        public virtual async Task<List<T>> GetAllAsync(CancellationToken cancellationToken = default)
+        public virtual async Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default)
         {
             return await _dbContext.Set<T>().ToListAsync(cancellationToken);
         }
