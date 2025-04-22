@@ -50,7 +50,7 @@ builder.Services.AddAutoMapper(typeof(AutoMapperProfile)); // Automapper
 
 #region Services
 
-builder.Services.AddScoped<IMapperService, MapperService>(); //Servicio de mapeo
+builder.Services.AddScoped<IMapperService, MapperService>(); //Servicio de mapeo entidades/dtos
 builder.Services.AddScoped<IGenreService, GenreService>();
 
 #endregion
