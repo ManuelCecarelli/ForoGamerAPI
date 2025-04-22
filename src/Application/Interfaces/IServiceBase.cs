@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace Application.Interfaces
 {
-    public interface IServiceBase<T> where T : class
+    public interface IServiceBase<T, TDto>
+        where T : class
+        where TDto : class
     {
-        Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default);
+        Task<IEnumerable<TDto>> GetAllAsync(CancellationToken cancellationToken = default);
 
-        Task<T?> GetByIdAsync<TId>(TId id, CancellationToken cancellationToken = default) where TId : notnull;
+        Task<TDto?> GetByIdAsync<TId>(TId id, CancellationToken cancellationToken = default) where TId : notnull;
 
-        Task<T> CreateAsync(T entity, CancellationToken cancellationToken = default);
+        Task<TDto> CreateAsync(T entity, CancellationToken cancellationToken = default);
 
         Task UpdateAsync(T entity, CancellationToken cancellationToken = default);
 

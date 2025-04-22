@@ -9,32 +9,49 @@ using System.Threading.Tasks;
 
 namespace Application.Services
 {
-    public abstract class ServiceBase<T> : IServiceBase<T> where T : class
+    public abstract class ServiceBase<T, TDto> : IServiceBase<T, TDto>
+        where T : class
+        where TDto : class
     {
-        private readonly IRepositoryBase<T> _repository;
+        protected readonly IRepositoryBase<T> _repository;
+        protected readonly IMapperService _mapper;
 
-        protected ServiceBase(IRepositoryBase<T> repository)
+        protected ServiceBase(IRepositoryBase<T> repository, IMapperService mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
-        public virtual async Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default)
+        public virtual async Task<IEnumerable<TDto>> GetAllAsync(CancellationToken cancellationToken = default)
         {
-            return await _repository.GetAllAsync(cancellationToken);
+            var entities = await _repository.GetAllAsync(cancellationToken);
+
+            return _mapper.MapList<T, TDto>(entities);
         }
 
-        public virtual async Task<T?> GetByIdAsync<TId>(TId id, CancellationToken cancellationToken = default) where TId : notnull
+        public virtual async Task<TDto?> GetByIdAsync<TId>(TId id, CancellationToken cancellationToken = default) where TId : notnull
         {
-            return await _repository.GetByIdAsync(id, cancellationToken);
+            var entity = await _repository.GetByIdAsync(id, cancellationToken);
+
+            if (entity == null)
+                throw new NotFoundException("El id especificado no existe");
+
+            return _mapper.Map<T, TDto>(entity);
         }
 
-        public virtual async Task<T> CreateAsync(T entity, CancellationToken cancellationToken = default)
+        public virtual async Task<TDto> CreateAsync(T entity, CancellationToken cancellationToken = default)
         {
-            return await _repository.AddAsync(entity, cancellationToken);
+            //hacer validaciones y mapear RequestDto en entity
+
+            await _repository.AddAsync(entity, cancellationToken);
+
+            return _mapper.Map<T, TDto>(entity);
         }
 
         public virtual async Task UpdateAsync(T entity, CancellationToken cancellationToken = default)
         {
+            //hacer validaciones y mapear RequestDto en entity
+
             await _repository.UpdateAsync(entity, cancellationToken);
         }
 

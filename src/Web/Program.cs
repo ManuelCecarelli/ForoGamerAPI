@@ -1,5 +1,9 @@
+using Application.Interfaces;
+using Application.Services;
 using Domain.Interfaces;
 using Infrastructure.Data;
+using Infrastructure.Services;
+using Infrastructure.Services.Mapping;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
@@ -38,9 +42,16 @@ builder.Services.AddDbContext<ApplicationDbContext>(dbContextOptions => dbContex
 
 #endregion
 
+#region AutoMapperConfig
+
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile)); // Automapper
+
+#endregion
+
 #region Services
 
-
+builder.Services.AddScoped<IMapperService, MapperService>(); //Servicio de mapeo
+builder.Services.AddScoped<IGenreService, GenreService>();
 
 #endregion
 

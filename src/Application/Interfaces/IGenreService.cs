@@ -1,7 +1,9 @@
-﻿namespace Application.Interfaces
-{
-    public interface IGenreService
-    {
+﻿using Application.Models;
+using Domain.Entities;
 
+namespace Application.Interfaces
+{
+    public interface IGenreService : IServiceBase<Genre, GenreDTO>
+    {
     }
 }
