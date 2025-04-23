@@ -1,6 +1,6 @@
 ﻿namespace Domain.Interfaces
 {
-    public interface IRepositoryBase<T> where T : class
+    public interface IRepositoryBase<TEntity> where TEntity : class
     {
         // <summary>
         // Finds all entities of <typeparamref name="T" /> from the database.
@@ -9,7 +9,7 @@
         // A task that represents the asynchronous operation.
         // The task result contains a <see cref="List{T}" /> that contains elements from the input sequence.
         // </returns>
-        Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default);
+        Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken cancellationToken = default);
 
         // <summary>
         // Finds an entity with the given primary key value.
@@ -21,7 +21,7 @@
         // A task that represents the asynchronous operation.
         // The task result contains the <typeparamref name="T" />, or <see langword="null"/>.
         // </returns>
-        Task<T?> GetByIdAsync<TId>(TId id, CancellationToken cancellationToken = default) where TId : notnull;
+        Task<TEntity?> GetByIdAsync<TId>(TId id, CancellationToken cancellationToken = default) where TId : notnull;
 
         // <summary>
         // Adds an entity in the database.
@@ -32,21 +32,21 @@
         // A task that represents the asynchronous operation.
         // The task result contains the <typeparamref name="T" />.
         // </returns>
-        Task<T> AddAsync(T entity, CancellationToken cancellationToken = default);
+        Task<TEntity> AddAsync(TEntity entity, CancellationToken cancellationToken = default);
 
         // <summary>
         // Updates an entity in the database
         // </summary>
         // <param name="entity">The entity to update.</param>
         // <returns>A task that represents the asynchronous operation.</returns>
-        Task UpdateAsync(T entity, CancellationToken cancellationToken = default);
+        Task UpdateAsync(TEntity entity, CancellationToken cancellationToken = default);
 
         // <summary>
         // Removes an entity in the database
         // </summary>
         // <param name="entity">The entity to delete.</param>
         // <returns>A task that represents the asynchronous operation.</returns>
-        Task DeleteAsync(T entity, CancellationToken cancellationToken = default);
+        Task DeleteAsync(TEntity entity, CancellationToken cancellationToken = default);
 
         // <summary>
         // Persists changes to the database.

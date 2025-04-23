@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.Models.Request.Genre
 {
-    public class GenreCreateRequest
+    public class GenreCreateDTO
     {
         [Required]
         public string Name { get; set; }

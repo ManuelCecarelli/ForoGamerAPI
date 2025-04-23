@@ -1,4 +1,5 @@
 ﻿using Application.Models;
+using Application.Models.Request.Genre;
 using AutoMapper;
 using Domain.Entities;
 using System;
@@ -14,6 +15,8 @@ namespace Infrastructure.Services.Mapping
         public AutoMapperProfile()
         {
             CreateMap<Genre, GenreDTO>(); //Se puede agregar ".ReverseMap();" para permitir el mapeo inverso.
+            CreateMap<GenreCreateDTO, Genre>();
+            CreateMap<GenreUpdateDTO, Genre>();
 
             //agregar otros mapeos...
         }

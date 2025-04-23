@@ -22,6 +22,12 @@ namespace Infrastructure.Services.Mapping
             return _mapper.Map<TDestination>(source);
         }
 
+        public TDestination Map<TSource, TDestination>(TSource source, TDestination destination)
+        {
+            return _mapper.Map<TSource, TDestination>(source, destination);
+        }
+        
+
         public IEnumerable<TDestination> MapList<TSource, TDestination>(IEnumerable<TSource> source)
         {
             return _mapper.Map<IEnumerable<TDestination>>(source);

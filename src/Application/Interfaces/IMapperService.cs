@@ -9,6 +9,7 @@ namespace Application.Interfaces
     public interface IMapperService
     {
         TDestination Map<TSource, TDestination>(TSource source);
+        TDestination Map<TSource, TDestination>(TSource source, TDestination destination);
         IEnumerable<TDestination> MapList<TSource, TDestination>(IEnumerable<TSource> source);
     }
 }
