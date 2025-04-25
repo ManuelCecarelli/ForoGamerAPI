@@ -9,8 +9,9 @@ namespace Application.Models.Request.Genre
 {
     public class GenreUpdateDTO
     {
-        public string? Name { get; set; }
-
+        [Required]
+        public string Name { get; set; }
+        
         public string? Description { get; set; }
     }
 }

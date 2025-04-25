@@ -15,8 +15,24 @@ namespace Infrastructure.Services.Mapping
         public AutoMapperProfile()
         {
             CreateMap<Genre, GenreDTO>(); //Se puede agregar ".ReverseMap();" para permitir el mapeo inverso.
-            CreateMap<GenreCreateDTO, Genre>();
-            CreateMap<GenreUpdateDTO, Genre>();
+
+            CreateMap<GenreCreateDTO, Genre>()
+                .BeforeMap((src, dst) =>
+                {
+                    if (string.IsNullOrWhiteSpace(src.Description))
+                    {
+                        dst.Description = null;
+                    }
+                });
+
+            CreateMap<GenreUpdateDTO, Genre>()
+                .BeforeMap((src, dst) =>
+                {
+                    if (string.IsNullOrWhiteSpace(src.Description))
+                    {
+                        dst.Description = null;
+                    }
+                });
 
             //agregar otros mapeos...
         }
