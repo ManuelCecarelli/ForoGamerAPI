@@ -14,6 +14,7 @@ namespace Infrastructure.Services.Mapping
     {
         public AutoMapperProfile()
         {
+            #region GenreMaps
             CreateMap<Genre, GenreDTO>(); //Se puede agregar ".ReverseMap();" para permitir el mapeo inverso.
 
             CreateMap<GenreCreateDTO, Genre>()
@@ -26,13 +27,14 @@ namespace Infrastructure.Services.Mapping
                 });
 
             CreateMap<GenreUpdateDTO, Genre>()
-                .BeforeMap((src, dst) =>
+                .AfterMap((src, dst) =>
                 {
-                    if (string.IsNullOrWhiteSpace(src.Description))
+                    if (string.IsNullOrWhiteSpace(dst.Description))
                     {
                         dst.Description = null;
                     }
                 });
+            #endregion
 
             //agregar otros mapeos...
         }

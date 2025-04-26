@@ -1,6 +1,7 @@
 ﻿using Application.Interfaces;
 using Application.Models;
 using Application.Models.Request.Genre;
+using Domain.Entities;
 using Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
@@ -37,9 +38,11 @@ namespace Web.Controllers
             CancellationToken cancellationToken = default)
         {
             var genreDto = await _genreService.CreateAsync(genreCreateDto, cancellationToken);
+
             return CreatedAtAction(
-                $"{nameof(GetById)}/{genreDto.Id}",
-                genreDto
+                nameof(GetById), // nombre del método que sirve para recuperar el recurso
+                new { id = genreDto.Id }, // id del recurso
+                genreDto // incluimos el nuevo recurso creado en el body de la respuesta
             );
         }
 
