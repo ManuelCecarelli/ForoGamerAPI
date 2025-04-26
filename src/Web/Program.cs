@@ -2,6 +2,7 @@ using Application.Interfaces;
 using Application.Services;
 using Domain.Interfaces;
 using Infrastructure.Data;
+using Infrastructure.Middleware;
 using Infrastructure.Services;
 using Infrastructure.Services.Mapping;
 using Microsoft.Data.Sqlite;
@@ -69,6 +70,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 

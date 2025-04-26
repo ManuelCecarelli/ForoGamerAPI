@@ -1,6 +1,7 @@
 ﻿using Application.Interfaces;
 using Application.Models;
 using Application.Models.Request.Genre;
+using Domain.Entities;
 using Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,57 +23,42 @@ namespace Web.Controllers
         public async Task<ActionResult<IEnumerable<GenreDTO>>> GetAll(CancellationToken cancellationToken = default)
         {
             var dtoList = await _genreService.GetAllAsync(cancellationToken);
-
             return Ok(dtoList);
         }
 
         [HttpGet("[action]/{id}")]
         public async Task<ActionResult<GenreDTO>> GetById([FromRoute] int id, CancellationToken cancellationToken = default)
         {
-            try
-            {
-                return await _genreService.GetByIdAsync(id, cancellationToken);
-            }
-            catch (NotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
+            var genreDto = await _genreService.GetByIdAsync(id, cancellationToken);
+            return Ok(genreDto);
         }
 
         [HttpPost("[action]")]
         public async Task<ActionResult<GenreDTO>> Create([FromBody] GenreCreateDTO genreCreateDto,
             CancellationToken cancellationToken = default)
         {
-            return await _genreService.CreateAsync(genreCreateDto, cancellationToken);
+            var genreDto = await _genreService.CreateAsync(genreCreateDto, cancellationToken);
+
+            return CreatedAtAction(
+                nameof(GetById), // nombre del método que sirve para recuperar el recurso
+                new { id = genreDto.Id }, // id del recurso
+                genreDto // incluimos el nuevo recurso creado en el body de la respuesta
+            );
         }
 
         [HttpPut("[action]/{id}")]
         public async Task<ActionResult> Update([FromRoute] int id, [FromBody] GenreUpdateDTO genreUpdateDto,
             CancellationToken cancellationToken = default)
         {
-            try
-            {
-                await _genreService.UpdateAsync(id, genreUpdateDto, cancellationToken);
-                return Ok();
-            }
-            catch (NotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
+            await _genreService.UpdateAsync(id, genreUpdateDto, cancellationToken);
+            return NoContent();
         }
 
         [HttpDelete("[action]/{id}")]
         public async Task<ActionResult> Delete([FromRoute] int id, CancellationToken cancellationToken = default)
         {
-            try
-            {
-                await _genreService.DeleteAsync(id, cancellationToken);
-                return Ok();
-            }
-            catch (NotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
+            await _genreService.DeleteAsync(id, cancellationToken);
+            return NoContent();
         }
     }
 }
