@@ -59,6 +59,7 @@ builder.Services.AddScoped<IGenreService, GenreService>();
 #region Repositories
 
 builder.Services.AddScoped<IGenreRepository, GenreRepository>();
+builder.Services.AddScoped<IPlatformRepository, PlatformRepository>();
 
 #endregion
 
