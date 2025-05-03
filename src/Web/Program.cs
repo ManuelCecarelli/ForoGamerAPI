@@ -53,6 +53,7 @@ builder.Services.AddAutoMapper(typeof(AutoMapperProfile)); // Automapper
 
 builder.Services.AddScoped<IMapperService, MapperService>(); //Servicio de mapeo entidades/dtos
 builder.Services.AddScoped<IGenreService, GenreService>();
+builder.Services.AddScoped<IPlatformService, PlatformService>();
 
 #endregion
 
