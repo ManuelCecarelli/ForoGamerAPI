@@ -1,5 +1,6 @@
 ﻿using Application.Models;
 using Application.Models.Request.Genre;
+using Application.Models.Request.Platform;
 using AutoMapper;
 using Domain.Entities;
 using System;
@@ -27,6 +28,28 @@ namespace Infrastructure.Services.Mapping
                 });
 
             CreateMap<GenreUpdateDTO, Genre>()
+                .AfterMap((src, dst) =>
+                {
+                    if (string.IsNullOrWhiteSpace(dst.Description))
+                    {
+                        dst.Description = null;
+                    }
+                });
+            #endregion
+
+            #region PlatformMaps
+            CreateMap<Platform, PlatformDTO>();
+
+            CreateMap<PlatformCreateDTO, Platform>()
+                .BeforeMap((src, dst) =>
+                {
+                    if (string.IsNullOrWhiteSpace(src.Description))
+                    {
+                        dst.Description = null;
+                    }
+                });
+
+            CreateMap<PlatformUpdateDTO, Platform>()
                 .AfterMap((src, dst) =>
                 {
                     if (string.IsNullOrWhiteSpace(dst.Description))
