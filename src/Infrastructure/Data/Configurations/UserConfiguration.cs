@@ -13,10 +13,14 @@ namespace Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
+            //restricciones en propiedades
             builder.Property(u => u.UserName).IsRequired().HasMaxLength(30);
             builder.Property(u => u.Email).IsRequired();
             builder.Property(u => u.Password).IsRequired();
             builder.Property(u => u.UserType).IsRequired();
+
+            //indices
+            builder.HasIndex(u => u.Email).IsUnique();
 
             //relaciones
             builder.HasMany(u => u.Issues)
@@ -29,6 +33,7 @@ namespace Infrastructure.Data.Configurations
                    .HasForeignKey(c => c.UserId)
                    .OnDelete(DeleteBehavior.Cascade);
 
+            //semilla de datos
             builder.HasData(CreateUserDataSeed());
         }
 

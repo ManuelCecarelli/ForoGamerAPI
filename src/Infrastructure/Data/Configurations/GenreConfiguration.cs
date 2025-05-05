@@ -13,7 +13,10 @@ namespace Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Genre> builder)
         {
+            //restricciones en propiedades
             builder.Property(g => g.Name).IsRequired().HasMaxLength(30);
+
+            //semilla de datos
             builder.HasData(CreateGenreDataSeed());
         }
 

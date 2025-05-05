@@ -13,7 +13,10 @@ namespace Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Platform> builder)
         {
+            //restricciones en propiedades
             builder.Property(p => p.Name).IsRequired().HasMaxLength(30);
+
+            //semilla de datos
             builder.HasData(CreatePlatformDataSeed());
         }
 

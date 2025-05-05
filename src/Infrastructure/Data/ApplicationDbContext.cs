@@ -8,6 +8,7 @@ namespace Infrastructure.Data
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Platform> Platforms { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Issue> Issues { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
