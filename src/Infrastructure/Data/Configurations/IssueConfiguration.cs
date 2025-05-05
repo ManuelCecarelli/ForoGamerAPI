@@ -18,18 +18,6 @@ namespace Infrastructure.Data.Configurations
             builder.Property(i => i.DescText).IsRequired();
             builder.Property(i => i.UserId).IsRequired();
             builder.Property(i => i.User).IsRequired();
-
-            //relaciones
-            builder.HasOne(i => i.User)
-                .WithMany(u => u.Issues);
-
-            builder.HasMany(i => i.Comments)
-                .WithOne(c => c.Issue)
-                .HasForeignKey(c => c.IssueId);
-
-            builder.HasMany(i => i.Genres);
-
-            builder.HasMany(i => i.Platforms);
         }
     }
 }

@@ -22,17 +22,6 @@ namespace Infrastructure.Data.Configurations
             //indices
             builder.HasIndex(u => u.Email).IsUnique();
 
-            //relaciones
-            builder.HasMany(u => u.Issues)
-               .WithOne(i => i.User)
-               .HasForeignKey(i => i.UserId)
-               .OnDelete(DeleteBehavior.Cascade);
-
-            builder.HasMany(u => u.Comments)
-                   .WithOne(c => c.User)
-                   .HasForeignKey(c => c.UserId)
-                   .OnDelete(DeleteBehavior.Cascade);
-
             //semilla de datos
             builder.HasData(CreateUserDataSeed());
         }
