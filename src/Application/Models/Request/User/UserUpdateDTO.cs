@@ -9,10 +9,10 @@ namespace Application.Models.Request.User
 {
     public class UserUpdateDTO
     {
-        [Required]
+        [Required, StringLength(30, MinimumLength = 4)]
         public string UserName { get; set; }
 
-        [Required]
+        [Required, MinLength(8)]
         public string Password { get; set; }
 
         public string? ProfilePhotoURL { get; set; }

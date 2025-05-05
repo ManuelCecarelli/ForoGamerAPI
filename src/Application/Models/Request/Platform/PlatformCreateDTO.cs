@@ -9,7 +9,7 @@ namespace Application.Models.Request.Platform
 {
     public class PlatformCreateDTO
     {
-        [Required]
+        [Required, MaxLength(20)]
         public string Name { get; set; }
 
         public string? Description { get; set; }

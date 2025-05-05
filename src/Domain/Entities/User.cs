@@ -7,13 +7,10 @@ namespace Domain.Entities
     {
         public int Id { get; set; }
 
-        [Required, StringLength(25, MinimumLength = 4)]
         public string UserName { get; set; }
 
-        [Required, EmailAddress]
         public string Email { get; set; }
 
-        [Required]
         public string Password { get; set; }
 
         public DateTime RegistrationDate { get; private set; } = DateTime.UtcNow;

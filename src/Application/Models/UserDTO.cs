@@ -13,10 +13,8 @@ namespace Application.Models
     {
         public int Id { get; set; }
 
-        [Required]
         public string UserName { get; set; }
 
-        [Required]
         public string Email { get; set; }
 
         public DateTime RegistrationDate { get; set; }
