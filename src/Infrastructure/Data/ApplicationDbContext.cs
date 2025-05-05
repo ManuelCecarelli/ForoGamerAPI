@@ -7,6 +7,9 @@ namespace Infrastructure.Data
     {
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Platform> Platforms { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Issue> Issues { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -15,102 +18,13 @@ namespace Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Genre>()
-                .Property(g => g.Id)
-                .ValueGeneratedOnAdd();
-
-            modelBuilder.Entity<Platform>()
-                .Property(p => p.Id)
-                .ValueGeneratedOnAdd();
-
-            modelBuilder.Entity<Genre>().HasData(CreateGenreDataSeed());
-            modelBuilder.Entity<Platform>().HasData(CreatePlatformDataSeed());
+            /* esta instrucción captura las configuraciones individuales de cada entidad que se encuentran
+             * en este mismo ensamblado. Están ubicadas en:
+             * Infrastructure/Data/Configurations/
+             */
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
 
             base.OnModelCreating(modelBuilder);
-        }
-
-        private Genre[] CreateGenreDataSeed()
-        {
-            Genre[] newGenres = [
-
-                new Genre()
-                {
-                    Id = 1,
-                    Name = "None",
-                    Description = "Sin género"
-                },
-                new Genre()
-                {
-                    Id = 2,
-                    Name = "RTS",
-                    Description = "Real Time Strategy"
-                },
-                new Genre
-                {
-                    Id = 3,
-                    Name = "Sports",
-                    Description = null
-                },
-                new Genre
-                {
-                    Id = 4,
-                    Name = "Fighting",
-                    Description = null
-                },
-                new Genre
-                {
-                    Id = 5,
-                    Name = "Racing",
-                    Description = null
-                },
-            ];
-
-            return newGenres;
-        }
-
-        private Platform[] CreatePlatformDataSeed()
-        {
-            Platform[] newPlatforms = [
-
-                new Platform
-                {
-                    Id = 1,
-                    Name= "None",
-                    Description = "Sin plataforma"
-                },
-                new Platform
-                {
-                    Id = 2,
-                    Name= "PC",
-                    Description = "Personal Computer"
-                },
-                new Platform
-                {
-                    Id = 3,
-                    Name= "PS1",
-                    Description = "Play Station 1"
-                },
-                new Platform
-                {
-                    Id = 4,
-                    Name= "PS2",
-                    Description = "Play Station 2"
-                },
-                new Platform
-                {
-                    Id = 5,
-                    Name= "NES",
-                    Description = "Nintendo Entertainment System"
-                },
-                new Platform
-                {
-                    Id = 6,
-                    Name= "SNES",
-                    Description = "Super Nintendo Entertainment System"
-                },
-            ];
-
-            return newPlatforms;
         }
     }
 }

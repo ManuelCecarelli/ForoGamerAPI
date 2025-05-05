@@ -10,17 +10,18 @@ namespace Application.Models.Request.User
 {
     public class UserCreateDTO
     {
-        [Required]
+        [Required, StringLength(30, MinimumLength = 4)]
         public string UserName { get; set; }
 
-        [Required]
+        [Required, EmailAddress]
         public string Email { get; set; }
 
-        [Required]
+        [Required, MinLength(8)]
         public string Password { get; set; }
 
         public string? ProfilePhotoURL { get; set; }
 
+        [Required]
         public UserType UserType { get; set; }
     }
 }
