@@ -15,9 +15,9 @@ namespace Infrastructure.Data.Configurations
         {
             //restricciones en propiedades
             builder.Property(c => c.ContentText).IsRequired();
-            builder.Property(c => c.User).IsRequired();
+            //builder.Property(c => c.User).IsRequired();
             builder.Property(c => c.UserId).IsRequired();
-            builder.Property(c => c.Issue).IsRequired();
+            //builder.Property(c => c.Issue).IsRequired();
             builder.Property(c => c.IssueId).IsRequired();
         }
     }

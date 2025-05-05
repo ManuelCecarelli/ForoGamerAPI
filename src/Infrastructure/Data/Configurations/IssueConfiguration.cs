@@ -17,7 +17,7 @@ namespace Infrastructure.Data.Configurations
             builder.Property(i => i.Title).IsRequired().HasMaxLength(50);
             builder.Property(i => i.DescText).IsRequired();
             builder.Property(i => i.UserId).IsRequired();
-            builder.Property(i => i.User).IsRequired();
+            //builder.Property(i => i.User).IsRequired();
         }
     }
 }

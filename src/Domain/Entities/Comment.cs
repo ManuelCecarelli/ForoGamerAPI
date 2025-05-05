@@ -24,6 +24,10 @@ namespace Domain.Entities
 
         public bool Censored { get; set; } = false;
 
+        public Comment()
+        {
+        }
+
         public Comment(string contentText, User user, Issue issue, string? contentImgURL = null, int? responseTo = null)
         {
             ContentText = contentText;

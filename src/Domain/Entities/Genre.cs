@@ -10,6 +10,8 @@ namespace Domain.Entities
 
         public string? Description { get; set; }
 
+        public ICollection<Issue> Issues { get; set; } = new List<Issue>();
+
         public Genre()
         {
         }

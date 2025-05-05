@@ -31,24 +31,30 @@ namespace Infrastructure.Data.Configurations
             User[] newUsers = [
                 new User
                 {
+                    Id = 1,
                     UserName = "Common User 1",
                     Email = "commonuser1@gmail.com",
                     Password = "user1",
-                    UserType = Domain.Enums.UserType.CommonUser
+                    UserType = Domain.Enums.UserType.CommonUser,
+                    RegistrationDate = DateTime.Parse("05/05/2025")
                 },
                 new User
                 {
+                    Id = 2,
                     UserName = "Common User 2",
                     Email = "commonuser2@gmail.com",
                     Password = "user2",
-                    UserType = Domain.Enums.UserType.CommonUser
+                    UserType = Domain.Enums.UserType.CommonUser,
+                    RegistrationDate = DateTime.Parse("05/05/2025")
                 },
                 new User
                 {
+                    Id = 3,
                     UserName = "Admin",
                     Email = "admin@gmail.com",
                     Password = "admin",
-                    UserType = Domain.Enums.UserType.Admin
+                    UserType = Domain.Enums.UserType.Admin,
+                    RegistrationDate = DateTime.Parse("05/05/2025")
                 },
             ];
 

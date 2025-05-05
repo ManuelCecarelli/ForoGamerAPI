@@ -28,6 +28,10 @@ namespace Domain.Entities
 
         public bool Censored { get; set; } = false;
 
+        public Issue()
+        {
+        }
+
         public Issue(string title, string descText, User user, string? videoGame = null, string? descImgURL = null)
         {
             Title = title;

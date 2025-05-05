@@ -13,7 +13,7 @@ namespace Domain.Entities
 
         public string Password { get; set; }
 
-        public DateTime RegistrationDate { get; private set; } = DateTime.UtcNow;
+        public DateTime RegistrationDate { get; set; } = DateTime.UtcNow;
 
         public string? ProfilePhotoURL { get; set; }
 
