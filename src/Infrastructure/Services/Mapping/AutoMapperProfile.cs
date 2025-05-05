@@ -1,6 +1,7 @@
 ﻿using Application.Models;
 using Application.Models.Request.Genre;
 using Application.Models.Request.Platform;
+using Application.Models.Request.User;
 using AutoMapper;
 using Domain.Entities;
 using System;
@@ -55,6 +56,28 @@ namespace Infrastructure.Services.Mapping
                     if (string.IsNullOrWhiteSpace(dst.Description))
                     {
                         dst.Description = null;
+                    }
+                });
+            #endregion
+
+            #region UserMaps
+            CreateMap<User, UserDTO>();
+
+            CreateMap<UserCreateDTO, User>()
+                .BeforeMap((src, dst) =>
+                {
+                    if (string.IsNullOrWhiteSpace(src.ProfilePhotoURL))
+                    {
+                        dst.ProfilePhotoURL = null;
+                    }
+                });
+
+            CreateMap<UserUpdateDTO, User>()
+                .AfterMap((src, dst) =>
+                {
+                    if (string.IsNullOrWhiteSpace(dst.ProfilePhotoURL))
+                    {
+                        dst.ProfilePhotoURL = null;
                     }
                 });
             #endregion

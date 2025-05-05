@@ -14,16 +14,19 @@ namespace Domain.Entities
 
         public string? DescImgURL { get; set; }
 
-        public DateTime CreationDate { get; set; } = DateTime.Now;
+        public DateTime CreationDate { get; set; } = DateTime.UtcNow;
+
+        [Required]
+        public int UserId { get; set; }
 
         [Required]
         public User User { get; set; }
 
-        public ICollection<Genre>? Genres { get; set; } = new List<Genre>();
+        public ICollection<Genre> Genres { get; set; } = new List<Genre>();
 
-        public ICollection<Platform>? Platforms { get; set; } = new List<Platform>();
+        public ICollection<Platform> Platforms { get; set; } = new List<Platform>();
 
-        public ICollection<Comment>? Comments { get; set; } = new List<Comment>();
+        public ICollection<Comment> Comments { get; set; } = new List<Comment>();
 
         public bool Censored { get; set; } = false;
 
@@ -33,6 +36,7 @@ namespace Domain.Entities
             DescText = descText;
             DescImgURL = descImgURL;
             User = user;
+            UserId = user.Id;
         }
     }
 }
