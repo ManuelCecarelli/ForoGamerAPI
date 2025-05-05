@@ -11,10 +11,16 @@ namespace Domain.Entities
 
         public string? ContentImgURL { get; set; }
 
-        public DateTime CreationDate { get; set; } = DateTime.Now;
+        public DateTime CreationDate { get; set; } = DateTime.UtcNow;
+
+        [Required]
+        public int UserId { get; set; }
 
         [Required]
         public User User { get; set; }
+
+        [Required]
+        public int IssueId { get; set; }
 
         [Required]
         public Issue Issue { get; set; }
@@ -28,7 +34,9 @@ namespace Domain.Entities
             ContentText = contentText;
             ContentImgURL = contentImgURL;
             User = user;
+            UserId = user.Id;
             Issue = issue;
+            IssueId = issue.Id;
             ResponseTo = responseTo;
         }
     }
